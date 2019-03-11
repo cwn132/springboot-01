@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cwn.springboot.Mapper.AccountMapper">
+
+
+<update id="updateUserInfo" parameterType="com.cwn.springboot.bean.UserVO">
+
+update test_users a
+        <set>
+        <if test="firstname!=null"> a.firstname    =#{firstname}, </if>
+        <if test="lastname!=null">a.lastname     =#{lastname}, </if>
+        <if test="sex!=null">a.sex          =#{sex}, </if>
+        <if test="age!=null">a.age          =#{age}, </if>
+        <if test="email!=null"> a.email        =#{email}, </if>
+        <if test="usersigninfo!=null">a.usersigninfo =#{usersigninfo}</if>
+        </set>
+ where a.userid=#{userid}
+</update>
+
+    <update id="updateHeadImgEmpty" parameterType="com.cwn.springboot.bean.Img">
+
+        update test_img a
+        <set>
+              a.imgpath    =#{imgpath,jdbcType=VARCHAR},
+        </set>
+        where a.imgid=#{imgid}
+    </update>
+
+    <update id="updateHeadImg" parameterType="com.cwn.springboot.bean.Img">
+
+        update test_img a
+        <set>
+            a.imgpath    =#{imgpath},
+        </set>
+        where a.imgid=#{imgid}
+    </update>
+
+
+ <select id="getDocumentfileByUser" resultType="map">
+ select b.documentfileid,
+        b.documentfilename,
+        (select count(1)
+           from test_img a
+          where a.documentfileid = b.documentfileid
+            and a.imgtype = 2
+            and a.imgstatus = 1) as imgnum
+   from test_documentfile b
+  where b.userid = #{userid}
+  </select>
+
+    <insert id="insertDocumentfileByUser" parameterType="com.cwn.springboot.bean.Documentfile">
+         insert into test_documentfile(documentfileid,documentfilename,userid,username,credate)
+          values (DOCUMENTFILE_SEQ.NEXTVAL,#{documentfilename},#{userid},#{username},sysdate)
+     </insert>
+
+    <delete id="deleteDocumentfileById" parameterType="java.lang.Integer">
+         delete from test_documentfile where documentfileid = #{documentfileid}
+     </delete>
+
+    <delete id="deleteImgByDfId" parameterType="java.lang.Integer">
+         delete from test_img where documentfileid = #{documentfileid}
+     </delete>
+
+
+    <update id="updateDocumentfileById" parameterType="com.cwn.springboot.bean.Documentfile">
+
+        update test_documentfile a
+        <set>
+            a.documentfilename    =#{documentfilename},
+        </set>
+        where a.documentfileid=#{documentfileid}
+    </update>
+
+
+    <select id="getImgByDocumentfile" resultType="map">
+select a.imgid, a.imgpath, a.imgmessage, a.credate
+  from TEST_IMG a
+ where a.documentfileid = #{documentfileid}
+  </select>
+
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cwn.springboot.Mapper.IndexMapper">
+
+<select id="listUser"  resultType="map">
+		select userid,username from test_users
+</select>
+
+<select id="getUserInfo" resultType="com.cwn.springboot.bean.UserVO">
+   select * from test_users where username=#{username}
+  </select>
+
+
+    <select id="getUserInfoById" resultType="com.cwn.springboot.bean.UserVO">
+   select * from test_users where userid=#{userid}
+  </select>
+
+    <!--主页面展示图片-->
+<select id="getImgpath" resultType="java.lang.String">
+
+ select imgpath from TEST_IMG where imgstatus=1 and imgtype=2 and rownum <![CDATA[ < ]]> 9 and username=#{username}
+
+  </select>
+
+<select id="getImgpathListbyUser" resultType="map">
+
+    select  b.imgid,b.imgpath,b.imgmessage,
+    b.documentfileid,
+    to_char(b.credate, 'yyyy-MM-dd')  as credate
+    from test_img b where b.imgid in(
+    select max(imgid)
+    from test_img a where a.username=#{username}
+    and a.imgtype=2
+    and a.imgstatus=1
+--     and rownum  <![CDATA[ < ]]>9
+    group by a.documentfileid
+    )
+
+  </select>
+
+<select id="getImgpathListbyImgid" resultType="map">
+
+ select imgid,imgpath,imgmessage from TEST_IMG where imgid=#{imgid}
+
+  </select>
+
+<!--头像图片-->
+<select id="getHeadImgpath" resultType="java.lang.String">
+
+ select imgpath from TEST_IMG where imgstatus=1 and imgtype=1  and username=#{username}
+
+</select>
+
+<!--头像图片List-->
+<select id="getHeadImgpathList" resultType="map">
+
+ select imgid,imgpath from TEST_IMG where imgstatus=1 and imgtype=1  and username=#{username}
+
+</select>
+
+    <!--随机获取成员图片-->
+<select id="getTeams" resultType="map">
+    select a.username,
+    (select b.imgpath from test_img b
+    where a.userid=b.userid
+    and a.username=b.username
+    and b.imgstatus=1 and b.imgtype=1) imgpath
+    from test_users a where rownum <![CDATA[ < ]]> 6
+</select>
+
+    <select id="getTeamsMap" resultType="map">
+    select a.username,
+    (select b.imgpath from test_img b
+    where a.userid=b.userid
+    and a.username=b.username
+    and b.imgstatus=1 and b.imgtype=1) imgpath
+    from test_users a where rownum <![CDATA[ < ]]> 6
+</select>
+
+
+<select id="getImgpathListbyDocumentfile" resultType="map">
+
+select a.imgid,a.imgpath,a.imgmessage,to_char(a.credate, 'yyyy-MM-dd')  as credate
+ from test_img a
+ where  a.imgtype=2
+ and a.imgstatus=1
+ and a.documentfileid=#{documentfileid}
+  </select>
+
+
+    <select id="getUserByUP" resultType="com.cwn.springboot.bean.UserVO">
+   select * from test_users where username=#{username} and password=#{password}
+  </select>
+
+</mapper>

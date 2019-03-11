@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>登陆界面</title>
+<link th:href="@{login/css/style.css}" rel='stylesheet' type='text/css' />
+<!--<link th:href="@{css/drag.css}" rel='stylesheet' type='text/css' />-->
+
+	<!-- 国内使用 -->
+	<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!--webfonts-->
+<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+
+
+
+</head>
+<body>
+		<div class="app-location">
+			<div class="line"><span></span></div>
+			<div class="location"><img src="login/images/location.png" class="img-responsive" alt="" /></div>
+			<form  id="loginform"  action="accountmain.html" th:action="@{/login}" method="post" onsubmit="return loginCheck();" >
+                <div id="msg" style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></div>
+				<div id="error" style="color: red" ></div>
+				<input type="text" id="username" name="username" class="text"   >
+				<input type="password" id="password" name="password"   >
+				<div id="your-dom-id" class="nc-container"></div> <!--No-Captcha渲染的位置，其中 class 中必须包含 nc-container-->
+
+
+                <div class="submit"><input type="submit"   value="登陆" ></div>
+
+				<div class="clear"></div>
+
+
+				<!--<div class="drag">-->
+					<!--<div class="dragtext" onselectstart="return false;"></div>-->
+					<!--<div class="btn">>></div>-->
+				<!--</div>-->
+
+				<div class="new">
+					<h3><a href="#">忘记密码</a></h3>
+					<div class="clear"></div>
+				</div>
+			</form>
+		</div>
+	<!--start-copyright-->
+
+</body>
+
+<script type="text/javascript">
+	// var nc_token = ["CF_APP_1", (new Date()).getTime(), Math.random()].join(':');
+	var nc_token = "0";
+	var result='false';
+
+	var NC_Opt =
+			{
+				renderTo: "#your-dom-id",
+				appkey: "CF_APP_1",
+				scene: "register",
+				token: nc_token,
+				customWidth: 300,
+				trans:{"key1":"code0"},
+				elementID: ["usernameID"],
+				is_Opt: 0,
+				language: "cn",
+				isEnabled: true,
+				timeout: 3000,
+				times:5,
+				apimap: {
+					// 'analyze': '//a.com/nocaptcha/analyze.jsonp',
+					// 'get_captcha': '//b.com/get_captcha/ver3',
+					// 'get_captcha': '//pin3.aliyun.com/get_captcha/ver3'
+					// 'get_img': '//c.com/get_img',
+					// 'checkcode': '//d.com/captcha/checkcode.jsonp',
+					// 'umid_Url': '//e.com/security/umscript/3.2.1/um.js',
+					// 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
+					// 'umid_serUrl': 'https://g.com/service/um.json'
+				},
+
+				callback: function (data) {
+					result='true';
+					window.console && console.log(nc_token)
+					window.console && console.log(data.csessionid)
+					window.console && console.log(data.sig)
+				}
+			}
+	var nc = new noCaptcha(NC_Opt);
+
+
+	nc.upLang('cn', {
+		_startTEXT: "请按住滑块，拖动到最右边",
+		_yesTEXT: "验证通过",
+		_error300: "哎呀，出错了，点击刷新再来一次",
+		_errorNetwork: "网络不给力，请点击刷新",
+	})
+
+
+
+	function loginCheck(){
+
+		document.getElementById ("error").innerHTML = ("");
+		var username=document.getElementById("username").value;//通过id获取需要验证的表单元素的值
+		var password=document.getElementById("password").value;//通过id获取需要验证的表单元素的值
+
+		if(username==''||password==''){
+			document.getElementById("error").innerHTML = ("用户名或密码为空，请输入!");
+			return false;
+		}else if(result=='false'){
+			document.getElementById("error").innerHTML = ("请滑动验证码!");
+			return false;
+		}else{
+			return true;
+
+		}
+
+
+	}
+
+</script>
+
+
+
+</html>

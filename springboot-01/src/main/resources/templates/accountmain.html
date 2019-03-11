@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--<title th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示" >-->
+  <!--<a th:if="${ #strings.isEmpty(user)}">摄影作品展示</a>-->
+  <link rel="icon" type="images/img_4.jpg" href="favicon.ico"/>
+    <title th:if="not ${ #strings.isEmpty(loginUser)}" th:text="${loginUser}+用户中心">
+</title>
+  <!--<a  th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示"></a>-->
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/open-iconic-bootstrap.min.css}">
+    
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}"  >
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}" >
+
+    <link rel="stylesheet" th:href="@{css/icomoon.css}"  >
+    <link rel="stylesheet" th:href="@{css/animate.css}" >
+    <link rel="stylesheet" th:href="@{css/style.css}"  >
+
+  </head>
+
+
+  <body>
+    
+    <aside class="probootstrap-aside js-probootstrap-aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+<a th:href="@{/changeheadimg(pp=${loginUser},l='zh_CH')}">
+        <img th:src="${headimg}" class="round_icon"  th:alt="${loginUser}"  >
+</a>
+        <p class="mb-1"><a th:text="Welcome+' '+${loginUser}" th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}"></a></p>
+        <br>
+        <p class="mb-1"><a th:text="${usersigninfo}" th:if="${not #strings.isEmpty(usersigninfo)}"></a></p>
+        </p>
+        <br>
+
+        <!--<a href="index.html" class="mb-2 d-block probootstrap-logo">Aside</a>-->
+        <p class="mb-1"><a th:if="${#strings.isEmpty(loginUser)}" th:href="@{/accountmain.html(l='en_US')}">English</a>
+          <a th:if="${ #strings.isEmpty(loginUser)}" th:href="@{/accountmain.html(l='zh_CH')}">中文</a></p>
+
+        <p class="mb-1"><a th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/accountmain(pp=${loginUser},l='en_US')}">English</a>
+          <a  th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}">中文</a></p>
+
+
+
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+          <ul>
+
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a th:text="#{index.personalInfo}" th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}">PersonalInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.photoInfo}" th:href="@{/file(pp=${loginUser},l='zh_CH')}">PhotoInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.shareInfo}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">ShareInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.messageInfo}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">MessageInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.changepassword}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">ChangePassword</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.logout}" th:href="@{/logout}">Logout</a></li>
+
+          </ul>
+        </nav>
+        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+          <!--<ul class="list-unstyled d-flex probootstrap-aside-social">-->
+            <!--<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>-->
+          <!--</ul>-->
+          <!--<p>&copy; 2019 ProBootstrap:Aside. <br> All Rights Reserved</p>-->
+        </footer>
+      </div>
+    </aside>
+
+
+    <main role="main" class="probootstrap-main js-probootstrap-main">
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo">
+        </div>
+      </div>
+
+
+      <!--<div class="card-columns">-->
+
+      <!--</div>-->
+        <br>
+      <p align="center">
+        个人主页： <a th:href="@{/index(pp=${loginUser},l='zh_CH')}" target="view_window" >http://192.168.122.18:8080/index?pp=<a th:text="${loginUser}"></a></a>
+
+        <!--<h5 class="mb-3"><p th:text="'登陆帐户：'+${loginUser}" style="text-align: center" ></p>-->
+        <!--</h5>-->
+      </p>
+
+      <div class="container-fluid">
+
+
+        <div class="row">
+          <div class="col-xl-5 col-lg-12 mx-auto">
+
+        <form action="accountmain.html" th:action="@{/savepersoninfo}" method="post" onsubmit="return saveCheck();" class="probootstrap-form mb-5">
+          <input th:type="hidden" id="userid" name="userid" th:value="${userid}">
+          <input th:type="hidden" id="sessionuser" name="sessionuser" th:value="${loginUser}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstname"><a th:text="#{index.firstname}" >First Name</a></label>
+                <input th:value="${firstname}" type="text" class="form-control" id="firstname" name="firstname">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastname"><a th:text="#{index.lastname}" >Last Name</a></label>
+                <input th:value="${lastname}" type="text" class="form-control" id="lastname" name="lastname">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+          <div class="form-group">
+            <label for="age"><a th:text="#{index.age}" >Age</a></label>
+            <input th:value="${age}"   type="number" class="form-control" id="age" name="age">
+          </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="sex"><a th:text="#{index.sex}" >Sex</a></label>
+
+             <br>
+              <div id="sex" th:if="${sex==null}">
+                <input name="sex" th:value="1" checked type="radio">男</input>
+                <input name="sex" th:value="2" type="radio">女</input>
+              </div>
+              <div   th:if="${sex==1}">
+                <input name="sex" th:value="1" checked type="radio">男</input>
+                <input name="sex" th:value="2" type="radio">女</input>
+              </div>
+              <div th:if="${sex==2}">
+                <input name="sex" th:value="1" type="radio">男</input>
+                <input name="sex" th:value="2" checked type="radio">女</input>
+              </div>
+
+
+
+            </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email"><a th:text="#{index.email}" >Email</a></label>
+            <input th:value="${email}"  type="email" class="form-control" id="email" name="email">
+          </div>
+          <div class="form-group mb-4">
+            <label for="usersigninfo"><a th:text="#{index.usersigninfo}" >Usersigninfo</a></label>
+            <textarea th:text="${usersigninfo}" cols="20" rows="5" maxlength="50"
+                      class="form-control" id="usersigninfo" name="usersigninfo"></textarea>
+
+
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" id="submit" name="submit" th:value="#{index.save}">
+          </div>
+        </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+    
+  </body>
+</html>

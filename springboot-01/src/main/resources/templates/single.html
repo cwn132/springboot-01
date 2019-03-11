@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+
+    <title th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示">
+    </title>
+    <title th:if="${ #strings.isEmpty(user)}" th:text="摄影作品展示">
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/open-iconic-bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}"  >
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}" >
+
+    <link rel="stylesheet" th:href="@{css/icomoon.css}"  >
+    <link rel="stylesheet" th:href="@{css/animate.css}" >
+    <link rel="stylesheet" th:href="@{css/style.css}"  >
+
+
+    <!-- Animate.css -->
+    <!--<link rel="stylesheet" href="photoshow/css/animatephoto.css">-->
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="photoshow/css/icomoon.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="photoshow/css/magnific-popup.css">
+    <!-- Salvattore -->
+    <link rel="stylesheet" href="photoshow/css/salvattore.css">
+    <!-- Theme Style -->
+    <!--<link rel="stylesheet" href="photoshow/css/stylephoto.css">-->
+    <!-- Modernizr JS -->
+    <script src="photoshow/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="photoshow/js/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    
+    <aside class="probootstrap-aside js-probootstrap-aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+
+        <img th:src="${headimg}" class="round_icon"  th:alt="${user}"  >
+        <p class="mb-1"><a th:text="Welcome+' '+${user}" th:if="${not #strings.isEmpty(user)}" th:href="@{/index(pp=${user},l='zh_CH')}"></a></p>
+        <br>
+        <p class="mb-1"><a th:text="${usersigninfo}" th:if="${not #strings.isEmpty(usersigninfo)}"></a></p>
+        </p>
+
+        <br>
+        <!--<a href="index.html" class="mb-2 d-block probootstrap-logo">Aside</a>-->
+        <p class="mb-1"><a th:if="${#strings.isEmpty(user)}" th:href="@{/single.html(l='en_US')}">English</a>
+          <a th:if="${ #strings.isEmpty(user)}" th:href="@{/single.html(l='zh_CH')}">中文</a></p>
+
+        <p class="mb-1"><a th:if="${not #strings.isEmpty(user)}" th:href="@{/single(pp=${user},documentfileid=${documentfileid},l='en_US')}">English</a>
+          <a  th:if="${not #strings.isEmpty(user)}" th:href="@{/single(pp=${user},documentfileid=${documentfileid},l='zh_CH')}">中文</a></p>
+
+
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+
+          <ul>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a th:text="#{index.portfolio}" th:href="@{/index(pp=${user},l='zh_CH')}">Portfolio</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.login}" th:if="${#strings.isEmpty(loginUser)}" href="../login.html">Login</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.accountcenter}" th:if="${not #strings.isEmpty(loginUser)}"th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}">AccountCenter</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.sharetech}" href="../sharetech.html">ShareTechnology</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.about}" th:href="@{/about(pp=${user},l='zh_CH')}">About</a></li>
+            <!--<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="services.html">Services</a></li>-->
+            <!--<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.portfolio}" th:href="@{/portfolio(pp=${user},l='zh_CH')}">Portfolio</a></li>-->
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.contact}" th:href="@{/contact(pp=${user},l='zh_CH')}">Contact</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.logout}" th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/logout}">Logout</a></li>
+
+          </ul>
+
+        </nav>
+        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+          <!--<ul class="list-unstyled d-flex probootstrap-aside-social">-->
+            <!--<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>-->
+          <!--</ul>-->
+          <!--<p>&copy; 2019 ProBootstrap:Aside. <br> All Rights Reserved</p>-->
+        </footer>
+      </div>
+    </aside>
+
+
+    <main role="main" class="probootstrap-main js-probootstrap-main">
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo">
+          <a th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影" th:href="@{/index(pp=${user},l='zh_CH')}"></a>
+          <a th:if="${ #strings.isEmpty(user)}" href="index.html">摄影</a>
+
+        </div>
+
+      </div>
+      <div class="container-fluid">
+        <!--<iframe frameborder="0" height="800px" scrolling="auto" th:src="photoshow.html"-->
+                <!--width="100%"></iframe>-->
+        <!--<div th:include="photoshow.html" class="navbar"></div>-->
+
+<!--***************-->
+        <div id="fh5co-main">
+          <div class="container">
+
+            <div class="row">
+
+              <div id="fh5co-board" data-columns>
+
+                <div class="item" th:each="entries,stat:${imgpathmsg}">
+                  <div class="animate-box">
+                    <a th:href="${entries['IMGPATH']}" class="image-popup fh5co-board-img" th:title="${entries['IMGMESSAGE']}" ><img th:src="${entries['IMGPATH']}" alt="img"></a>
+                  </div>
+                  <div class="fh5co-desc">
+                    <a style="text-align: left" th:text="${entries['IMGMESSAGE']}"></a><br>
+                    <a style="text-align: right" th:text="${entries['CREDATE']}"></a>
+                  </div>
+                </div>
+
+
+                <!--<div class="item">-->
+                  <!--<div class="animate-box">-->
+                    <!--<a href="photoshow/images/img_1.jpg" class="image-popup fh5co-board-img" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?"><img src="photoshow/images/img_1.jpg" alt="Free HTML5 Bootstrap template"></a>-->
+                  <!--</div>-->
+                  <!--<div class="fh5co-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?</div>-->
+                <!--</div>-->
+
+                <!--<div class="item">-->
+                  <!--<div class="animate-box">-->
+                    <!--<a href="photoshow/images/img_2.jpg" class="image-popup fh5co-board-img"><img src="photoshow/images/img_2.jpg" alt="Free HTML5 Bootstrap template"></a>-->
+                    <!--<div class="fh5co-desc">Veniam voluptatum voluptas tempora debitis harum totam vitae hic quos.</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="item">-->
+                  <!--<div class="animate-box">-->
+                    <!--<a href="photoshow/images/img_3.jpg" class="image-popup fh5co-board-img"><img src="photoshow/images/img_3.jpg" alt="Free HTML5 Bootstrap template"></a>-->
+                    <!--<div class="fh5co-desc">Optio commodi quod vitae, vel, officiis similique quaerat odit dicta.</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="item">-->
+                  <!--<div class="animate-box">-->
+                    <!--<a href="photoshow/images/img_4.jpg" class="image-popup fh5co-board-img"><img src="photoshow/images/img_4.jpg" alt="Free HTML5 Bootstrap template"></a>-->
+                    <!--<div class="fh5co-desc">Dolore itaque deserunt sit, at exercitationem delectus, consequuntur quaerat sapiente.</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+<!--***************-->
+
+
+        <!--<div class="row justify-content-center" th:each="entries,stat:${imgpathmsg}">-->
+
+          <!--<div class="col-xl-8 col-lg-12" >-->
+            <!--<p class="mb-5">-->
+              <!--<h1 class="mb-3"><p th:text="#{index.single}" style="text-align: center">Single Photo</p></h1>-->
+
+              <!--<img th:src="${entries['IMGPATH']}"alt="img" class="img-fluid">-->
+
+            <!--</p>-->
+
+            <!--<div class="row" >-->
+              <!--<div class="col-xl-18 col-lg-20 mx-auto">-->
+
+                <!--<p th:text="${entries['IMGMESSAGE']}"></p>-->
+
+               <!--</div>-->
+            <!--</div>-->
+            <!---->
+          <!--</div>-->
+        <!--</div>-->
+        <!-- END row -->
+
+        <section class="probootstrap-section">
+          <div class="container-fluid">
+            <div class="row mb-5 justify-content-center">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-8 mx-auto">
+                    <!--<h2 class="h1 mb-5 mt-0">Related Projects</h2>    -->
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <div class="owl-carousel probootstrap-owl">
+                  
+                  <!--<div class="item">-->
+                    <!--<img src="images/img_2.jpg" class="img-fluid" alt="Free Template by ProBootstrap.com">-->
+                    <!--<div class="p-3 border border-top-0">-->
+                      <!--<h4>Craig Smith</h4>-->
+                      <!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!---->
+                  <!--<div class="item">-->
+                    <!--<img src="images/img_3.jpg" class="img-fluid" alt="Free Template by ProBootstrap.com">-->
+                    <!--<div class="p-3 border border-top-0">-->
+                      <!--<h4>Peter Wood</h4>-->
+                      <!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!---->
+                  <!--<div class="item">-->
+                    <!--<img src="images/img_4.jpg" class="img-fluid" alt="Free Template by ProBootstrap.com">-->
+                    <!--<div class="p-3 border border-top-0">-->
+                      <!--<h4>James Carl</h4>-->
+                      <!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!---->
+                  <!--<div class="item">-->
+                    <!--<img src="images/img_5.jpg" class="img-fluid" alt="Free Template by ProBootstrap.com">-->
+                    <!--<div class="p-3 border border-top-0">-->
+                      <!--<h4>Craig Smith</h4>-->
+                      <!--<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
+                    <!--</div>-->
+                  <!--</div>-->
+
+                </div>
+              </div>
+            </div>
+            
+
+            
+          </div>
+        </section>
+        <!-- END section -->
+
+      </div>
+
+      <div class="container-fluid d-md-none">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-unstyled d-flex probootstrap-aside-social">
+              <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+            </ul>
+            <p>&copy; 2019 ProBootstrap:Aside <br> All Rights Reserved. Designed by ProBootstrap </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+
+
+
+
+    <!-- jQuery -->
+    <!--<script src="photoshow/js/jquery.min.js"></script>-->
+    <!-- jQuery Easing -->
+    <script src="photoshow/js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="photoshow/js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="photoshow/js/jquery.magnific-popup.min.js"></script>
+    <!-- Salvattore -->
+    <script src="photoshow/js/salvattore.min.js"></script>
+    <!-- Main JS -->
+    <script src="photoshow/js/main.js"></script>
+    
+  </body>
+</html>

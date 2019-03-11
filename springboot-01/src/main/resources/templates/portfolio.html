@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+
+    <title th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示">
+    </title>
+    <title th:if="${ #strings.isEmpty(user)}" th:text="摄影作品展示">
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/open-iconic-bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}"  >
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}" >
+
+    <link rel="stylesheet" th:href="@{css/icomoon.css}"  >
+    <link rel="stylesheet" th:href="@{css/animate.css}" >
+    <link rel="stylesheet" th:href="@{css/style.css}"  >
+
+  </head>
+  <body>
+    
+    <aside class="probootstrap-aside js-probootstrap-aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+
+        <p class="mb-1"><a th:text="Welcome+' '+${user}" th:if="${not #strings.isEmpty(user)}" th:href="@{/index(pp=${user},l='zh_CH')}"></a></p>
+        <br>
+        <p class="mb-1"><a th:text="${usersigninfo}" th:if="${not #strings.isEmpty(usersigninfo)}"></a></p>
+        </p>
+        <br>
+
+        <!--<a href="index.html" class="mb-2 d-block probootstrap-logo">Aside</a>-->
+        <p class="mb-1"><a th:if="${#strings.isEmpty(user)}" th:href="@{/index.html(l='en_US')}">English</a>
+          <a th:if="${ #strings.isEmpty(user)}" th:href="@{/index.html(l='zh_CH')}">中文</a></p>
+
+        <p class="mb-1"><a th:if="${not #strings.isEmpty(user)}" th:href="@{/portfolio(pp=${user},l='en_US')}">English</a>
+          <a  th:if="${not #strings.isEmpty(user)}" th:href="@{/portfolio(pp=${user},l='zh_CH')}">中文</a></p>
+
+
+
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+          <ul>
+
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a th:text="#{index.home}" th:href="@{/index(pp=${user},l='zh_CH')}">Home</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.login}" href="../login.html">Login</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.about}" th:href="@{/about(pp=${user},l='zh_CH')}">About</a></li>
+            <!--<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="services.html">Services</a></li>-->
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.portfolio}" th:href="@{/portfolio(pp=${user},l='zh_CH')}">Portfolio</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a th:text="#{index.contact}" th:href="@{/contact(pp=${user},l='zh_CH')}">Contact</a></li>
+
+          </ul>
+        </nav>
+        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+          <ul class="list-unstyled d-flex probootstrap-aside-social">
+            <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+            <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+            <li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+          </ul>
+          <p>&copy; 2019 ProBootstrap:Aside. <br> All Rights Reserved</p>
+        </footer>
+      </div>
+    </aside>
+
+
+    <main role="main" class="probootstrap-main js-probootstrap-main">
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo">
+          <a th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影" th:href="@{/index(pp=${user},l='zh_CH')}"></a>
+          <a th:if="${ #strings.isEmpty(user)}" href="index.html">摄影</a>
+
+        </div>
+      </div>
+      <div class="card-columns">
+
+        <div class="card">
+          <a href="single.html">
+          <img class="card-img-top probootstrap-animate" src="images/img_1.jpg" alt="Card image cap" data-animate-effect="fadeIn">
+          </a>
+        </div>
+
+      </div>  
+
+      <div class="container-fluid d-md-none">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-unstyled d-flex probootstrap-aside-social">
+              <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+            </ul>
+            <p>&copy; 2019 ProBootstrap:Aside <br> All Rights Reserved. Designed by ProBootstrap </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+    
+  </body>
+</html>

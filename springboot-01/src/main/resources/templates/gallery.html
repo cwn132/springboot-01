@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--<title th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示" >-->
+  <!--<a th:if="${ #strings.isEmpty(user)}">摄影作品展示</a>-->
+  <link rel="icon" type="images/img_4.jpg" href="favicon.ico"/>
+    <title th:if="not ${ #strings.isEmpty(loginUser)}" th:text="${loginUser}+用户中心">
+</title>
+  <!--<a  th:if="not ${ #strings.isEmpty(user)}" th:text="${user}+摄影作品展示"></a>-->
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/open-iconic-bootstrap.min.css}">
+    
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}"  >
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}" >
+
+    <link rel="stylesheet" th:href="@{css/icomoon.css}"  >
+    <link rel="stylesheet" th:href="@{css/animate.css}" >
+    <link rel="stylesheet" th:href="@{css/style.css}"  >
+
+  </head>
+<style>
+    /*****Buttons*****/
+    .div {
+        display: inline-block;
+        padding: .3em .5em;
+        background-image: linear-gradient(#3ecaff, #bbb);
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: .3em;
+        box-shadow: 0 1px white inset;
+        text-align: center;
+        text-shadow: 0 1px 1px black;
+        color:white;
+        font-weight: bold;
+    }
+    .div:active{
+        box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+        border-color: rgba(0,0,0,.3);
+        background: #bbb;
+    }
+
+</style>
+  <body>
+    
+    <aside class="probootstrap-aside js-probootstrap-aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+<a th:href="@{/changeheadimg(pp=${loginUser},l='zh_CH')}">
+        <img th:src="${headimg}" class="round_icon"  th:alt="${loginUser}"  >
+</a>
+        <p class="mb-1"><a th:text="Welcome+' '+${loginUser}" th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}"></a></p>
+        <br>
+        <p class="mb-1"><a th:text="${usersigninfo}" th:if="${not #strings.isEmpty(usersigninfo)}"></a></p>
+        </p>
+        <br>
+
+        <!--<a href="index.html" class="mb-2 d-block probootstrap-logo">Aside</a>-->
+        <p class="mb-1"><a th:if="${#strings.isEmpty(loginUser)}" th:href="@{/gallery.html(l='en_US')}">English</a>
+          <a th:if="${ #strings.isEmpty(loginUser)}" th:href="@{/gallery.html(l='zh_CH')}">中文</a></p>
+
+        <p class="mb-1"><a th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/gallery(pp=${loginUser},documentfileid=${documentfileid},l='en_US')}">English</a>
+          <a  th:if="${not #strings.isEmpty(loginUser)}" th:href="@{/gallery(pp=${loginUser},documentfileid=${documentfileid},l='zh_CH')}">中文</a></p>
+
+
+
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+          <ul>
+
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a th:text="#{index.personalInfo}" th:href="@{/accountmain(pp=${loginUser},l='zh_CH')}">PersonalInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.photoInfo}" th:href="@{/file(pp=${loginUser},l='zh_CH')}">PhotoInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.shareInfo}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">ShareInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.messageInfo}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">MessageInfo</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.changepassword}" th:href="@{/index(pp=${loginUser},l='zh_CH')}">ChangePassword</a></li>
+            <li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a th:text="#{index.logout}" th:href="@{/logout}">Logout</a></li>
+
+          </ul>
+        </nav>
+        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+          <!--<ul class="list-unstyled d-flex probootstrap-aside-social">-->
+            <!--<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>-->
+            <!--<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>-->
+          <!--</ul>-->
+          <!--<p>&copy; 2019 ProBootstrap:Aside. <br> All Rights Reserved</p>-->
+        </footer>
+      </div>
+    </aside>
+
+
+    <main role="main" class="probootstrap-main js-probootstrap-main">
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo">
+        </div>
+      </div>
+
+
+      <!--<div class="card-columns">-->
+
+        <div class="main">
+            <div id="showimg">
+                <ul id="showui">
+                </ul>
+                <div id="showinput">
+
+                </div>
+            </div>
+            <div class="upimg">
+                <input type="file" id="upgteimg" value="" multiple />
+            </div>
+
+            <button class="btn" id="submit">开始上传</button>
+        </div>
+
+      <div class="container-fluid">
+          <!--<input type="file" name="image" accept=“image/*” onchange='handleInputChange'>-->
+          <link rel="import" th:href="@{/uploadimg.html}" />
+
+          <br>
+
+          <link rel="import" th:href="@{/gallerymanage.html}" />
+
+
+          <!-- Gallery -->
+          <section>
+              <ul id="gallery">
+
+                  <li id="fullPreview" ></li>
+
+                  <!-- 1 -->
+                  <li th:each="entries,stat:${imgmsgList}">
+                      <a th:href="${entries['IMGPATH']}"></a>
+                      <img th:src="${entries['IMGPATH']}" width="240" height="150" alt="Photo" />
+
+                      <div class="overLayer"></div>
+                      <div class="infoLayer">
+                          <ul>
+                              <li>
+                                  <h2>
+                                      Photo
+                                  </h2>
+                              </li>
+                              <li>
+                                  <p>
+                                      View Picture
+                                  </p>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="projectInfo">
+                        <p th:text="${entries['IMGMESSAGE']}"></p>
+                          <strong><p th:text="${entries['CREDATE']}"></p></strong>
+                          <a th:href="@{/delimg(imgid=${entries['IMGID']})}">
+                          <div class="div">
+                              删除照片
+                          </div>
+                          </a>
+
+                      </div>
+                  </li>
+
+              </ul>
+          </section>
+          <!-- / Gallery -->
+
+      </div>
+
+    </main>
+
+    
+
+    <!--<script src="js/jquery-3.2.1.slim.min.js"></script>-->
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+
+    <!--<script src="gallerymanage/js/jquery.min.js"></script>-->
+    <!--<script> var jq18 = $.noConflict(true); </script>-->
+
+    <script src="gallery/js/jquery.lazyload.min.js"></script>
+
+    <script src="gallery/js/least.min.js"></script>
+    <script src="gallery/js/prism.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            jq18(function($){
+                alert("dd");
+                $('#gallery').least();
+
+            });
+
+        });
+    </script>
+
+  </body>
+</html>
