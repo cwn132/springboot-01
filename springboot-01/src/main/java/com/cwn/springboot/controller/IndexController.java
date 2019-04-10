@@ -2,6 +2,7 @@ package com.cwn.springboot.controller;
 
 import com.cwn.springboot.bean.UserVO;
 import com.cwn.springboot.service.IndexService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 public class IndexController {

@@ -8,6 +8,7 @@ import com.cwn.springboot.bean.Img;
 import com.cwn.springboot.bean.UserVO;
 import com.cwn.springboot.service.AccountService;
 import com.cwn.springboot.service.IndexService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +27,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 public class AccountController {
+
+//    protected static Logger log = (Logger) LoggerFactory.getLogger(AccountController.class);
+//protected static Logger logger = (Logger) LoggerFactory.getLogger(AccountController.class);
+
     @Autowired
     private IndexService indexService;
 
@@ -466,7 +472,13 @@ public class AccountController {
                 return ResponseEntity.ok(result);
             }
 
-            boolean delflag= accountService.deleteDocumentfileById(documentfileid);
+            boolean delflag= false;
+            try {
+                delflag = accountService.deleteDocumentfileById(documentfileid);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             if(delflag==true){
               String  uploadpaths=deluploadFolder+loginUser+"/"+documentfileid;
                 //删除文件夹
