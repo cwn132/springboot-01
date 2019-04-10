@@ -3,6 +3,7 @@ package com.cwn.springboot.service;
 import com.cwn.springboot.bean.UserVO;
 import com.cwn.springboot.Mapper.IndexMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -16,25 +17,28 @@ public class IndexService {
     @Autowired
     private IndexMapper IndexMapper;
 
-    public List<Map<String,Object>> listUser() {
+    public List<UserVO> listUser() {
         return IndexMapper.listUser();
     }
 
+    @Cacheable( value = "getUserInfo" , key = "#username", sync = true)
     public UserVO getUserInfo(String username){
 
         return IndexMapper.getUserInfo(username);
     }
 
+    @Cacheable( value = "getUserInfoById" , key = "#id", sync = true)
     public UserVO getUserInfoById(Integer id){
 
         return IndexMapper.getUserInfoById(id);
     }
 
-
+    @Cacheable( value = "getImgpath" , key = "#username", sync = true)
     public List<String> getImgpath(String username){
         return IndexMapper.getImgpath(username);
     }
 
+    @Cacheable( value = "getHeadImgpath" , key = "#username", sync = true)
     public  String  getHeadImgpath(String username){
         return IndexMapper.getHeadImgpath(username);
     }

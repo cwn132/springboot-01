@@ -8,7 +8,7 @@ import java.util.Map;
 @Mapper
 public interface IndexMapper {
 
-    List<Map<String,Object>> listUser();
+    List<UserVO> listUser();
 
     public UserVO getUserInfo(String username);//获取会员信息
     public UserVO getUserInfoById(Integer userid);//获取会员信息

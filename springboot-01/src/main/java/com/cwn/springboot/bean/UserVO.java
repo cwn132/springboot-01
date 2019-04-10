@@ -1,7 +1,12 @@
 package com.cwn.springboot.bean;
 
-public class UserVO {
+import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
+public class UserVO  implements Serializable {
+
+    @ApiModelProperty(value = "用户ID", required = true)
     private  Integer userid;
     private  Integer age;
     private  Integer sex;

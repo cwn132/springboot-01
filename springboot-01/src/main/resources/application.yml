@@ -9,6 +9,7 @@ spring:
     basename: i18n.index
   thymeleaf:
       cache: false
+#      prefix: classpath:/templates/
 
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
@@ -17,12 +18,23 @@ spring:
     username: li
     password: li
 
+  # 引入activemq
+#  activemq:
+#    user: admin    # 连接用户名
+#    password: admin   # 连接密码
+#    broker-url: tcp://localhost:61616
+
+#全局设置时间
+  jackson:
+    date-format: yyyy-MM-dd  #使用字符串型表现
+    time-zone: GMT+8
+
 mybatis:
 #    mapper-locations: classpath:com/cwn/springboot/mapper/*.xml
     mapper-locations: classpath:mapper/*.xml
 
 resources: # 指定静态资源的路径
-      static-locations: classpath:/static/,classpath:/templates/
+      static-locations: classpath:/static/,classpath:/templates
       cache-period: 0
 
 file: #访问绝对路径下的静态资源
@@ -32,3 +44,29 @@ file: #访问绝对路径下的静态资源
 
 web:
   uploadpath: /images/
+
+#引入日志配置文件
+#=====================================  log  =============================
+logging:
+#  config: classpath:config/logback-spring.xml
+ file: target/filelog.log
+ level:
+   ROOT: WARN
+   cn.devmgr: TRACE
+
+#引入Redis 安装在Linux
+jedis :
+  pool :
+    host : 192.168.13.128
+    port : 6379
+    password: 123456
+    timeout: 10000
+    config :
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis : 100000
+
+
+#引入swagger
+swagger:
+  enable: true

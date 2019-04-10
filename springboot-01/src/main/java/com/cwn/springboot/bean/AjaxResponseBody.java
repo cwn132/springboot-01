@@ -1,5 +1,8 @@
 package com.cwn.springboot.bean;
 
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+
+
 public class AjaxResponseBody {
 
     public String getMsg() {

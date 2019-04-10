@@ -1,5 +1,7 @@
 package com.cwn.springboot;
 
+import com.cwn.springboot.bean.UserVO;
+import com.cwn.springboot.service.AccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -20,6 +23,9 @@ public class Springboot01ApplicationTests {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    private AccountService accountService;
+
     @Test
     public void contextLoads() throws SQLException {
 
@@ -30,6 +36,15 @@ public class Springboot01ApplicationTests {
         System.out.println(con);
         con.close();
 
+    }
+
+    @Test
+    public void testSelecUser(){
+      UserVO users= accountService.getUserInfoById(1);
+
+      System.out.println(users.getUserid());
+      System.out.println(users.getAge());
+      System.out.println(users.getSex());
     }
 
 }

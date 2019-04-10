@@ -7,6 +7,8 @@ import com.cwn.springboot.bean.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class AccountService {
 
     @Autowired
     private AccountMapper accountMapper;
+
+    public UserVO getUserInfoById(Integer id){
+
+        return accountMapper.getUserInfoById(id);
+    }
 
     void updateUserInfo(UserVO userVO) {
         accountMapper.updateUserInfo(userVO);
@@ -44,14 +51,20 @@ public class AccountService {
             return false;
         }
 
+
+
     }
 
-
-    public boolean deleteDocumentfileById(Integer documentfileid) {
+@Transactional(propagation = Propagation.REQUIRED)  //开启事务
+    public boolean deleteDocumentfileById(Integer documentfileid)throws Exception {
         try {
+            System.out.println("删除1");
             accountMapper.deleteDocumentfileById(documentfileid);
+            System.out.println("删除2");
             accountMapper.deleteImgByDfId(documentfileid);
-            return true;
+            System.out.println("******************结束");
+throw new Exception("进来1111111");
+//            return true;
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return false;
@@ -83,5 +96,10 @@ public class AccountService {
 
     public List<Map<String, Object>> getImgByDocumentfile(Integer documentfileid){
         return accountMapper.getImgByDocumentfile(documentfileid);
+    }
+
+    public List<UserVO> selsetUserList(){
+
+        return accountMapper.selsetUserList();
     }
 }

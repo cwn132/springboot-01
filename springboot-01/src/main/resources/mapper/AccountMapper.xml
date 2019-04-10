@@ -79,4 +79,14 @@ select a.imgid, a.imgpath, a.imgmessage, a.credate
  where a.documentfileid = #{documentfileid}
   </select>
 
+    <select id="selsetUserList" resultType="com.cwn.springboot.bean.UserVO">
+select a.userid,a.username,a.email  from test_users a where a.status=1
+
+    </select>
+
+
+    <select id="getUserInfoById" resultType="com.cwn.springboot.bean.UserVO">
+   select * from test_users where userid=#{userid}
+  </select>
+
 </mapper>
