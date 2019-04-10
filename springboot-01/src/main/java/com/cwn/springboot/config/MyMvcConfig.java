@@ -98,6 +98,10 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 registry.addViewController("/adminback/adminindex.html").setViewName("/adminback/adminindex");
 
                 registry.addViewController("/getUserInfo").setViewName("getUserInfo");
+
+                registry.addViewController("/sendMsg").setViewName("sendMsg");
+
+
             }
 
             //注册拦截器
