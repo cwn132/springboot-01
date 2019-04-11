@@ -23,7 +23,7 @@ public class SwaggerDemoApi {
 
 
    //限流：对外提供一个服务接口，允许最大并发数为10
-    private final Semaphore permit = new Semaphore(10, true);
+    private final Semaphore permit = new Semaphore(100, true);
 
 
     @RequestMapping(value="/get/userinfo", method=RequestMethod.GET)

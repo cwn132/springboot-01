@@ -35,6 +35,7 @@ public class AccountController {
 //    protected static Logger log = (Logger) LoggerFactory.getLogger(AccountController.class);
 //protected static Logger logger = (Logger) LoggerFactory.getLogger(AccountController.class);
 
+
     @Autowired
     private IndexService indexService;
 
@@ -104,6 +105,9 @@ public class AccountController {
      */
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpSession session,Map<String,Object> map){
+
+
+
         session.invalidate();//使Session变成无效，及用户退出
         map.put("msg","用户已退出！请重新登陆");
 //        return "login";
