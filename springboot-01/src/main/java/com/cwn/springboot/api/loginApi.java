@@ -38,6 +38,8 @@ public class loginApi {
         account.setUsername(username);
         account.setPassword(password);
 
+
+
         if(isValidPassword(account)) {
             String jwt = JwtUtil.generateToken(account.username);
             return new HashMap<String,String>(){{
