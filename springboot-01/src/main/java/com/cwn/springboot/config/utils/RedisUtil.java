@@ -752,11 +752,12 @@ public class RedisUtil {
      * @param value
      * @return 如果存在返回0 异常返回null
      */
-    public Long hset(String key, String field, String value) {
+    public Long hset(int indexdb,String key, String field, String value) {
         Jedis jedis = null;
         Long res = null;
         try {
             jedis = jedisPool.getResource();
+            jedis.select(indexdb);
             res = jedis.hset(key, field, value);
         } catch (Exception e) {
 
