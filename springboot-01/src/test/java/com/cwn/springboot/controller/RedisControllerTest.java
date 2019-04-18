@@ -31,10 +31,10 @@ public class RedisControllerTest {
 
         List<UserVO> userList=accountService.selsetUserList();
         for(UserVO user:userList){
-            redisUtil.lpush(RedisConstants.datebase1,"userList",user.getUserid()+"");
-            redisUtil.hset("user:"+user.getUserid(),"userId",user.getUserid()+"");
-            redisUtil.hset("user:"+user.getUsername(),"userName",user.getUsername()+"");
-            redisUtil.hset("user:"+user.getEmail(),"usereEail",user.getEmail()+"");
+//            redisUtil.lpush(RedisConstants.datebase1,"userList",user.getUserid()+"");
+            redisUtil.hset(RedisConstants.datebase1,"user:"+user.getUserid(),"userId",user.getUserid()+"");
+            redisUtil.hset(RedisConstants.datebase1,"user:"+user.getUserid(),"userName",user.getUsername()+"");
+            redisUtil.hset(RedisConstants.datebase1,"user:"+user.getUserid(),"usereEail",user.getEmail()+"");
 
         }
 
